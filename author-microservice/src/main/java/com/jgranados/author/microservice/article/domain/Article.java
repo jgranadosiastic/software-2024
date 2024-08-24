@@ -4,7 +4,9 @@
  */
 package com.jgranados.author.microservice.article.domain;
 
+import com.jgranados.author.microservice.author.application.exceptions.AuthorException;
 import com.jgranados.author.microservice.author.domain.Author;
+import com.jgranados.author.microservice.common.DomainEntity;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@DomainEntity
 public class Article {
     private String title;
     private String description;
@@ -25,7 +28,6 @@ public class Article {
     private LocalDate publicationDate;
     private boolean active;
     private boolean visible;
-    
     
     public boolean isContentValid() {
         if (content == null) {
@@ -36,6 +38,4 @@ public class Article {
         
         return words >= 200 && words <= 500;
     }
-    
-    
 }

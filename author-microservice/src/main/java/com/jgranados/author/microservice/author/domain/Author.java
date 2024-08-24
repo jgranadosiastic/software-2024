@@ -5,6 +5,7 @@
 package com.jgranados.author.microservice.author.domain;
 
 import com.jgranados.author.microservice.common.DomainEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Builder
 @DomainEntity
 public class Author {
     

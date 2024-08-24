@@ -17,7 +17,7 @@ public class PublishingArticleRequest {
     private String description;
     private String content;
     
-    public static Article convertToDmain(PublishingArticleRequest article) {
+    public static Article convertToDomain(PublishingArticleRequest article) {
         return Article.builder()
                 .title(article.getTitle())
                 .content(article.getContent())
