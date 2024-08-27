@@ -4,10 +4,10 @@
  */
 package com.jgranados.author.microservice.article.domain;
 
-import com.jgranados.author.microservice.author.application.exceptions.AuthorException;
 import com.jgranados.author.microservice.author.domain.Author;
 import com.jgranados.author.microservice.common.DomainEntity;
 import java.time.LocalDate;
+import java.util.UUID;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +21,7 @@ import lombok.Setter;
 @Builder
 @DomainEntity
 public class Article {
+    private UUID id;
     private String title;
     private String description;
     private Author author;

@@ -5,12 +5,11 @@
 package com.jgranados.author.microservice.author.infrastructure.outputport.db;
 
 import com.jgranados.author.microservice.author.domain.Author;
-import java.util.Optional;
 
 /**
  *
  * @author jose
  */
-public interface FindAuthorByEmailOutputPort {
-    Optional<Author> findByEmail(String email);
+public interface CreateAuthorOutputPort {
+    Author createAuthor(Author author);
 }

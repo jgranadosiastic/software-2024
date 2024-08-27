@@ -9,6 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,8 +23,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class AuthorDbEntity {
-    
+
     @Id
     private String email;
     @Column
@@ -32,13 +34,21 @@ public class AuthorDbEntity {
     private String profession;
     @Column
     private String about;
-    
-    public static Author convertToDomain(AuthorDbEntity dbEntity) {
+
+    public Author convertToDomain() {
         return Author.builder()
-                .email(dbEntity.getEmail())
-                .name(dbEntity.getName())
-                .profession(dbEntity.getProfession())
-                .about(dbEntity.getAbout())
+                .email(email)
+                .name(name)
+                .profession(profession)
+                .about(about)
                 .build();
+    }
+
+    public static AuthorDbEntity from(Author author) {
+        return new AuthorDbEntity(author.getEmail(),
+                author.getName(),
+                author.getProfession(),
+                author.getAbout()
+        );
     }
 }

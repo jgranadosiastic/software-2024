@@ -17,11 +17,11 @@ public class PublishingArticleRequest {
     private String description;
     private String content;
     
-    public static Article convertToDomain(PublishingArticleRequest article) {
+    public Article convertToDomain() {
         return Article.builder()
-                .title(article.getTitle())
-                .content(article.getContent())
-                .description(article.getDescription())
+                .title(title)
+                .content(content)
+                .description(description)
                 .build();
     }
 }

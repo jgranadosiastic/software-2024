@@ -4,9 +4,15 @@
  */
 package com.jgranados.author.microservice.author.infrastructure.inputadapters.restapi;
 
+import com.jgranados.author.microservice.author.application.createauthorusecase.CreateAuthorRequest;
+import com.jgranados.author.microservice.author.application.exceptions.AuthorException;
 import com.jgranados.author.microservice.author.application.publishingarticleusecase.PublishingArticleRequest;
+import com.jgranados.author.microservice.author.domain.Author;
+import com.jgranados.author.microservice.author.infrastructure.inputports.CreatingAuthorInputPort;
 import com.jgranados.author.microservice.author.infrastructure.inputports.PublishingArticleInputPort;
 import com.jgranados.author.microservice.common.WebAdapter;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +30,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorControllerAdapter {
     
     private PublishingArticleInputPort publishingArticle;
+    private CreatingAuthorInputPort creatingAuthorInputPort;
     
     @PostMapping("/{email}/articles")
     public ResponseEntity<Void> publishArticle(@PathVariable String email,
-            @RequestBody PublishingArticleRequest article) {
+            @RequestBody PublishingArticleRequest article) throws AuthorException {
         publishingArticle.publishArticle(email, article);
+        
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     
+    @PostMapping
+    public ResponseEntity<AuthorResponse> createAuthor(@RequestBody CreateAuthorRequest createAuthorRequest) {
+        Author created = creatingAuthorInputPort.createAuthor(createAuthorRequest);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(AuthorResponse.from(created));
+                
+    }
 }
