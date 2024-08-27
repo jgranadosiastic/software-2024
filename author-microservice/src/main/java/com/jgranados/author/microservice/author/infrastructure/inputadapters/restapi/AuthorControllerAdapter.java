@@ -11,6 +11,8 @@ import com.jgranados.author.microservice.author.domain.Author;
 import com.jgranados.author.microservice.author.infrastructure.inputports.CreatingAuthorInputPort;
 import com.jgranados.author.microservice.author.infrastructure.inputports.PublishingArticleInputPort;
 import com.jgranados.author.microservice.common.WebAdapter;
+import com.jgranados.author.microservice.common.exceptions.EntityAlreadyExistsException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,14 @@ public class AuthorControllerAdapter {
     
     private PublishingArticleInputPort publishingArticle;
     private CreatingAuthorInputPort creatingAuthorInputPort;
+
+    @Autowired
+    public AuthorControllerAdapter(PublishingArticleInputPort publishingArticle, CreatingAuthorInputPort creatingAuthorInputPort) {
+        this.publishingArticle = publishingArticle;
+        this.creatingAuthorInputPort = creatingAuthorInputPort;
+    }
+    
+    
     
     @PostMapping("/{email}/articles")
     public ResponseEntity<Void> publishArticle(@PathVariable String email,
@@ -41,7 +51,8 @@ public class AuthorControllerAdapter {
     }
     
     @PostMapping
-    public ResponseEntity<AuthorResponse> createAuthor(@RequestBody CreateAuthorRequest createAuthorRequest) {
+    public ResponseEntity<AuthorResponse> createAuthor(@RequestBody CreateAuthorRequest createAuthorRequest)
+            throws EntityAlreadyExistsException{
         Author created = creatingAuthorInputPort.createAuthor(createAuthorRequest);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(AuthorResponse.from(created));
