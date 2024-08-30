@@ -6,7 +6,7 @@ package com.jgranados.author.microservice.author.infrastructure.inputports;
 
 import com.jgranados.author.microservice.author.application.createauthorusecase.CreateAuthorRequest;
 import com.jgranados.author.microservice.author.domain.Author;
-import com.jgranados.author.microservice.common.exceptions.EntityAlreadyExistsException;
+import com.jgranados.author.microservice.common.application.exceptions.EntityAlreadyExistsException;
 
 /**
  *

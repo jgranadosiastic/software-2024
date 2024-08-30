@@ -5,7 +5,7 @@
 package com.jgranados.author.microservice.common.infrastructure.restapi;
 
 import com.jgranados.author.microservice.author.application.exceptions.AuthorException;
-import com.jgranados.author.microservice.common.exceptions.EntityAlreadyExistsException;
+import com.jgranados.author.microservice.common.application.exceptions.EntityAlreadyExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -11,7 +11,7 @@ import com.jgranados.author.microservice.author.domain.Author;
 import com.jgranados.author.microservice.author.infrastructure.inputports.CreatingAuthorInputPort;
 import com.jgranados.author.microservice.author.infrastructure.inputports.PublishingArticleInputPort;
 import com.jgranados.author.microservice.common.WebAdapter;
-import com.jgranados.author.microservice.common.exceptions.EntityAlreadyExistsException;
+import com.jgranados.author.microservice.common.application.exceptions.EntityAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;

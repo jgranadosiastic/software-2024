@@ -9,7 +9,7 @@ import com.jgranados.author.microservice.author.domain.Author;
 import com.jgranados.author.microservice.author.infrastructure.inputports.CreatingAuthorInputPort;
 import com.jgranados.author.microservice.author.infrastructure.outputadapter.db.AuthorDbOutputAdapter;
 import com.jgranados.author.microservice.common.UseCase;
-import com.jgranados.author.microservice.common.exceptions.EntityAlreadyExistsException;
+import com.jgranados.author.microservice.common.application.exceptions.EntityAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
